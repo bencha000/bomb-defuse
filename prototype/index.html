@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bomb Defuse Prototype</title>
+<style>
+  :root {
+    --bg: #12131a;
+    --panel: rgba(20, 22, 30, 0.92);
+    --line: rgba(255, 255, 255, 0.12);
+    --text: #e6e7ec;
+    --muted: #8b8f9e;
+    --brand: #32f08c;
+    --warn: #efaa17;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Cascadia Mono", "Consolas", "PingFang SC", monospace;
+  }
+  canvas { display: block; width: 100vw; height: 100vh; cursor: none; }
+  .panel {
+    position: fixed;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    backdrop-filter: blur(6px);
+    pointer-events: none;
+    user-select: none;
+  }
+  #hud { top: 14px; left: 14px; min-width: 230px; }
+  #hud .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  #hud .k { color: var(--muted); }
+  #hud .v { color: var(--text); }
+  #hud .big {
+    font-size: 15px;
+    color: var(--brand);
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  #hud .sep { height: 1px; background: var(--line); margin: 8px 0; }
+  #help {
+    bottom: 14px;
+    left: 14px;
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--muted);
+  }
+  #help b { color: var(--text); font-weight: 500; }
+  #ttk {
+    top: 14px;
+    right: 14px;
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--muted);
+    text-align: right;
+  }
+  #ttk b { color: var(--brand); font-size: 15px; }
+</style>
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<div id="hud" class="panel">
+  <div class="big" id="hud-weapon">手枪</div>
+  <div class="row"><span class="k">状态</span><span class="v" id="hud-state">IDLE</span></div>
+  <div class="row"><span class="k">速度</span><span class="v" id="hud-speed">0.00 m/s</span></div>
+  <div class="row"><span class="k">精度挡位</span><span class="v" id="hud-level">10</span></div>
+  <div class="row"><span class="k">散布</span><span class="v" id="hud-spread">±0.10°</span></div>
+  <div class="sep"></div>
+  <div class="row"><span class="k">弹药</span><span class="v" id="hud-ammo">12 / 36</span></div>
+  <div class="row"><span class="k">射速</span><span class="v" id="hud-rpm">300 RPM</span></div>
+  <div class="sep"></div>
+  <div class="row"><span class="k">FPS</span><span class="v" id="hud-fps">60</span></div>
+</div>
+
+<div id="ttk" class="panel">
+  上次击杀<br><b id="ttk-value">--</b>
+</div>
+
+<div id="help" class="panel">
+  <b>WASD</b> 移动（默认奔跑） · <b>Shift</b> 静步 · <b>C</b> 蹲行<br>
+  <b>左键</b> 开火 · <b>R</b> 换弹 · <b>1-5</b> 切换武器<br>
+  原型用 C 代替 Ctrl：浏览器会拦截 Ctrl+W
+</div>
+
+<script src="config.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

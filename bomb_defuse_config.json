@@ -1,0 +1,298 @@
+{
+  "meta": {
+    "name": "Bomb Defuse 3v3",
+    "version": "1.0",
+    "platform": "PC",
+    "perspective": "2D top-down",
+    "authority": "server"
+  },
+  "match": {
+    "playersPerTeam": 3,
+    "format": "BO8",
+    "roundsToWin": 5,
+    "sideSwitchAfterRound": 4,
+    "overtime": {
+      "rounds": 1,
+      "startMoney": 10000,
+      "side": "random",
+      "loadout": "long-gun"
+    }
+  },
+  "round": {
+    "buyTimeSec": 15,
+    "combatTimeSec": 90,
+    "c4TimerSec": 40,
+    "plantTimeSec": 3,
+    "defuseTimeSec": 7,
+    "endTimeSec": 5
+  },
+  "movement": {
+    "speedPerLevelMps": 0.6,
+    "jumpEnabled": false,
+    "crouchOverridesWalk": true,
+    "modes": {
+      "idle": {
+        "key": "none",
+        "speedLevel": 0,
+        "speedMps": 0,
+        "footstepRadiusM": 0
+      },
+      "sprint": {
+        "key": "default",
+        "speedLevel": 10,
+        "speedMps": 6.0,
+        "footstepRadiusM": 18,
+        "silent": false
+      },
+      "walk": {
+        "key": "Shift",
+        "speedLevel": 4,
+        "speedMps": 2.4,
+        "footstepRadiusM": 0,
+        "silent": true
+      },
+      "crouch": {
+        "key": "Ctrl",
+        "speedLevel": 2,
+        "speedMps": 1.2,
+        "footstepRadiusM": 0,
+        "silent": true,
+        "recoilMultiplier": 0.7,
+        "hitboxScale": 0.7
+      }
+    }
+  },
+  "accuracy": {
+    "levelToSpreadDeg": {
+      "10": 0.1,
+      "9": 0.4,
+      "8": 0.7,
+      "7": 1.2,
+      "6": 1.8,
+      "5": 2.6,
+      "4": 3.5,
+      "3": 4.6,
+      "2": 6.0,
+      "1": 8.0
+    },
+    "sequenceNote": "数组为 [首发, 第2发, 第3发, 稳态]",
+    "stateProfiles": {
+      "idle": {
+        "semi": [10, 9, 8, 7],
+        "auto": [10, 9, 8, 7]
+      },
+      "crouch": {
+        "semi": [10, 9, 8, 8],
+        "auto": [10, 9, 8, 8]
+      },
+      "walk": {
+        "semi": [10, 9, 9, 8],
+        "auto": [10, 8, 6, 5]
+      },
+      "sprint": {
+        "semi": [1, 1, 1, 1],
+        "auto": [1, 1, 1, 1]
+      }
+    },
+    "recoveryDelaySec": 0.4,
+    "recoveryLevelsPerSec": 10,
+    "shotgun": {
+      "pellets": 8,
+      "spreadDeg": 10,
+      "ignoresAccuracyLevels": true,
+      "stateMultiplier": {
+        "idle": 1.0,
+        "crouch": 0.8,
+        "walk": 1.4,
+        "sprint": 2.2
+      }
+    }
+  },
+  "weapons": [
+    {
+      "id": "pistol",
+      "class": "semi",
+      "name": "手枪",
+      "price": 700,
+      "damage": 32,
+      "rpm": 300,
+      "mag": 12,
+      "reserve": 36,
+      "reloadSec": 2.0,
+      "killReward": 300,
+      "distanceFalloff": { "fullM": 8, "minM": 20, "minRatio": 0.6 }
+    },
+    {
+      "id": "precision_rifle",
+      "class": "semi",
+      "name": "精准步枪",
+      "price": 2700,
+      "damage": 52,
+      "rpm": 240,
+      "mag": 10,
+      "reserve": 30,
+      "reloadSec": 2.6,
+      "killReward": 300,
+      "distanceFalloff": { "fullM": 20, "minM": 40, "minRatio": 0.6 }
+    },
+    {
+      "id": "smg",
+      "class": "auto",
+      "name": "冲锋枪",
+      "price": 1250,
+      "damage": 18,
+      "rpm": 900,
+      "mag": 25,
+      "reserve": 75,
+      "reloadSec": 1.8,
+      "killReward": 300,
+      "distanceFalloff": { "fullM": 5, "minM": 15, "minRatio": 0.5 }
+    },
+    {
+      "id": "rifle",
+      "class": "auto",
+      "name": "步枪",
+      "price": 2900,
+      "damage": 26,
+      "rpm": 600,
+      "mag": 30,
+      "reserve": 90,
+      "reloadSec": 2.4,
+      "killReward": 300,
+      "distanceFalloff": { "fullM": 15, "minM": 30, "minRatio": 0.7 }
+    },
+    {
+      "id": "shotgun",
+      "class": "shotgun",
+      "name": "散弹枪",
+      "price": 1100,
+      "damagePerPellet": 14,
+      "pellets": 8,
+      "rpm": 70,
+      "mag": 6,
+      "reserve": 18,
+      "reloadSec": 3.0,
+      "reloadPerShellSec": 0.5,
+      "killReward": 600,
+      "distanceFalloff": { "fullM": 4, "minM": 10, "minRatio": 0.0 }
+    }
+  ],
+  "armor": [
+    {
+      "id": "half",
+      "name": "半甲",
+      "price": 650,
+      "armorValue": 50,
+      "absorptionRatio": 0.5
+    },
+    {
+      "id": "full",
+      "name": "全甲",
+      "price": 1000,
+      "armorValue": 100,
+      "absorptionRatio": 0.6
+    }
+  ],
+  "utility": {
+    "maxCarry": 2,
+    "items": [
+      {
+        "id": "smoke",
+        "name": "烟雾弹",
+        "price": 300,
+        "carryLimit": 1,
+        "radiusM": 5,
+        "durationSec": 12,
+        "maxThrowM": 25,
+        "blocksVision": true,
+        "blocksBullets": false
+      },
+      {
+        "id": "flash",
+        "name": "闪光弹",
+        "price": 250,
+        "carryLimit": 1,
+        "fuseSec": 1.5,
+        "lightRadiusM": 12,
+        "maxBlindSec": 2.8,
+        "allyMultiplier": 0.3,
+        "minBlindSec": 0.25
+      }
+    ]
+  },
+  "flash": {
+    "samplePoints": 5,
+    "enemyMultiplier": 1.0,
+    "allyMultiplier": 0.3,
+    "backFlashReduction": false,
+    "smokeBlocksFlash": true,
+    "distanceFalloff": [
+      { "distanceM": 4, "multiplier": 1.0 },
+      { "distanceM": 8, "multiplier": 0.6 },
+      { "distanceM": 12, "multiplier": 0.2 }
+    ],
+    "fade": {
+      "burstSec": 0.15,
+      "fadeOutSec": 0.8,
+      "holdWhiteRatio": 0.5
+    },
+    "serverAuthoritative": true
+  },
+  "vision": {
+    "radiusM": 18,
+    "angleDeg": 360,
+    "blockers": ["wall", "crate", "smoke"],
+    "bulletsBlockedBy": ["wall"],
+    "lostVisionFadeSec": 0.3,
+    "shareTeamVision": false
+  },
+  "radar": {
+    "rotation": "north-up",
+    "position": "bottom-left",
+    "showFullMap": true,
+    "enemyVisible": "red-dot",
+    "enemyLost": "question-mark",
+    "questionFadeSec": 1.5,
+    "showTeammates": true,
+    "markBombCarrier": true
+  },
+  "sound": {
+    "sprintFootstepRadiusM": 18,
+    "semiShotRadiusM": 32,
+    "autoShotRadiusM": 36,
+    "shotgunShotRadiusM": 34,
+    "reloadRadiusM": 10,
+    "plantDefuseRadiusM": 12,
+    "wallOcclusion": false
+  },
+  "economy": {
+    "startMoney": 800,
+    "maxMoney": 10000,
+    "winElimination": 3000,
+    "winBombExplode": 3500,
+    "winDefuse": 3500,
+    "lossBase": 1900,
+    "lossStreakStep": 500,
+    "lossCap": 3400,
+    "plantReward": 300,
+    "defuseReward": 300
+  },
+  "map": {
+    "sizeMeters": [45, 35],
+    "bombSites": 2,
+    "siteCenterDistanceM": 12,
+    "siteRadiusM": 3.5,
+    "connectorWidthM": 3.5,
+    "siteA": "open",
+    "siteB": "cover-heavy",
+    "oneBombAtATime": true
+  },
+  "netcode": {
+    "serverTickHz": 30,
+    "clientInputHz": 60,
+    "interpolationMs": 100,
+    "lagCompensationMs": 200,
+    "maxMatchPingMs": 150,
+    "reconnectWindowSec": 20
+  }
+}
